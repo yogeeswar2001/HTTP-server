@@ -16,9 +16,10 @@
 ```
 
 ### Note
-- Files which need to be served should be placed inside the target directory
+- Files which need to be served should be placed inside the directory named file.
 - Default port number is : 8080
 - To change the port number pass --port followed by the port number as command line arguments while excuting the file.
+Example:
 ```
   ./server --port 8989
 ``` 
