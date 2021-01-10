@@ -13,7 +13,16 @@
 
 using namespace std;
 
-int main() {
+int main(int argc, char *argv[]) {
+	
+	//setting up port number
+	const char *port_number;
+	if(argc > 1){
+		port_number = argv[2];
+	}
+	else{
+		port_number = "8080";
+	}
 
 	// setting socket address
 	printf("configuring local address...\n");
@@ -25,7 +34,7 @@ int main() {
 	hints.ai_flags = AI_PASSIVE;
 
 	struct addrinfo *bind_addr;
-	getaddrinfo(0, "8080", &hints, &bind_addr);
+	getaddrinfo(0, port_number, &hints, &bind_addr);
 	
 	//creating a socket 
 	printf("creating sockets...\n");

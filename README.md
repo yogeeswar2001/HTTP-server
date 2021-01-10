@@ -1,13 +1,24 @@
-# HTTP server
-###### This is an HTTP server which is able to serve GET rerquest.
+# HTTP web server
+##### This is an HTTP server which is able to serve static web pages.
 
-### How to run server
-###### Run the following command from terminal to run the server
+### How to run the server
+##### Run the following commands from the terminal to run the server
 ```
-  make clean
-  make
   cd target
   ./server
 ```
+
+### How to recompile the server
+##### Move to the cloned directory and run the following commands from the terminal to recompile
+```
+  make clean
+  make
+```
+
 ### Note
-###### Files which need to be serverd should be placed inside the target directory
+- Files which need to be served should be placed inside the target directory
+- Default port number is : 8080
+- To change the port number pass --port followed by the port number as command line arguments while excuting the file.
+```
+  ./server --port 8989
+``` 

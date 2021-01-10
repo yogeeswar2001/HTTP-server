@@ -17,7 +17,9 @@ void parser::parse_request(char request[]){
 	method[j] = '\0';
 
 	i++;j=0;
-	file_name[j++]='.';
+
+	strcpy(file_name, "../files");
+	j = strlen(file_name);
 	while(request[i] != ' ')
 		file_name[j++] = request[i++];
 	file_name[j] = '\0';

@@ -11,19 +11,24 @@ using namespace std;
 
 void get_handler::construct_response(char file_name[], int socket_client){
 	FILE *fileptr;
-	int filesize;
-
-	//to find file size
-	struct stat filestat;
-	stat(file_name, &filestat);
-	filesize = filestat.st_size;
 	
 	//reading content from file
-	response_body = (char *)malloc(filesize+1);
 	fileptr = fopen(file_name, "r");
 	if(fileptr == NULL){
 		printf("ERROR: in file opening\n");
+		strcpy(file_name, "../files/error_404.html");
+		fileptr = fopen(file_name, "r");	
 	}
+	
+	//debugging 
+	//printf("\n--------------%s------------\n",file_name);
+
+	//to find file size
+	int filesize;
+	struct stat filestat;
+	stat(file_name, &filestat);
+	filesize = filestat.st_size;
+	response_body = (char *)malloc(filesize+1);
 	int bytes = fread(response_body, filesize, 1, fileptr);
 	
 	//construct headers
@@ -34,10 +39,13 @@ void get_handler::construct_response(char file_name[], int socket_client){
 
 	//sending body
 	get_handler::send_response(socket_client, response_body, filesize);
+
+	//closing file pointer
+	fclose(fileptr);
 }
 
 const char* get_handler::filetype(char file_name[]){
-	int i=1,j=0;
+	int i=2,j=0;
 	while( file_name[i] != '.')
 		i++;
 	i++;
